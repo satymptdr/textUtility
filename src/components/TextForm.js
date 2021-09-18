@@ -37,14 +37,14 @@ export default function TextForm(props) {
 
     const handleExtraSpaces = () =>{
         let newText = text.split(/[ ]+/); // split(separator, limit) method splits a string into an array of substrings, and returns the new array.
-        setText(newText.join(" "));
+        setText(newText.join(" ")); //The str.join(separator) method returns an array as a string. The elements will be separated by a specified separator. The default separator is comma (,). join() does not change the original array.
         props.showAlert("Extra spaces removed!!!!", "success");
     }
 
     const handleToJsx = () =>{
-        let newText = text.replace(/class=/g, "className=");
+        let newText = text.replace(/class=/g, "className=").replace(/for=/g, "htmlFor=");// string.replace(searchvalue, newvalue) searchvalue can be value of regular expression to replace global use regular expression
         setText(newText);
-        props.showAlert("Converted to className!!!!", "success");
+        props.showAlert("Converted to JSX!!!!", "success");
     }
     
     return (
@@ -52,19 +52,19 @@ export default function TextForm(props) {
         <div className="container" style={{color: props.mode === 'dark'?'white':'#042743'}}>
             <h1>{props.heading}</h1>
             <div className="mb-3">
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-outline-success me-md-1" type="button" onClick={handleCopy}>Copy</button>
+                <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button className={`btn btn-outline-black me-md-1`} type="button" onClick={handleCopy}>Copy</button>
                 </div>
                 <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode === 'dark'?'grey':'white', color: props.mode === 'dark'?'white':'#042743'}} id="myBox" rows="10">
                 </textarea>
             
             </div>
             
-            <button className="btn btn-outline-primary my-2" onClick={handleUpClick}>Convert text to UpperCase</button>
-            <button className="btn btn-outline-secondary mx-2 my-2" onClick={handleLoClick}>Convert text to LowerCase</button>
-            <button className="btn btn-outline-success mx-2 my-2" onClick={handleClear}>Clear text</button>
-            <button className="btn btn-outline-warning mx-2 my-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
-            <button className="btn btn-outline-info mx-2 my-2" onClick={handleToJsx}>convert class to className</button>
+            <button className="btn btn-outline-light my-2 my-2" onClick={handleUpClick}>Convert text to UpperCase</button>
+            <button className="btn btn-outline-light mx-2 my-2" onClick={handleLoClick}>Convert text to LowerCase</button>
+            <button className="btn btn-outline-light mx-2 my-2" onClick={handleClear}>Clear text</button>
+            <button className="btn btn-outline-light mx-2 my-2" onClick={handleExtraSpaces}>Remove Extra Spaces</button>
+            <button className="btn btn-outline-light mx-2 my-2" onClick={handleToJsx}>Convert to JSX</button>
         </div>
         <div className="container my-4" style={{color: props.mode === 'dark'?'white':'#042743'}}>
             <h2>Your text summary</h2>

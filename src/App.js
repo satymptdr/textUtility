@@ -19,16 +19,27 @@ function App() {// function based component earlier class based was used
       setAlert(null);
     }, 1000);
   }
-  const toggleMode = ()=>{
+  const removeBodyClasses = ()=>{
+    document.body.classList.remove('bg-light');
+    document.body.classList.remove('bg-dark');
+    document.body.classList.remove('bg-primary');
+    document.body.classList.remove('bg-secondary');
+    document.body.classList.remove('bg-success');
+    document.body.classList.remove('bg-warning');
+    document.body.classList.remove('bg-danger');
+  }
+  const toggleMode = (setColor)=>{
+    removeBodyClasses();
+    console.log("mode:: ", setColor);
+    
+    document.body.classList.add('bg-'+setColor); 
     if(mode === 'light'){
       setMode('dark');
       document.body.style.backgroundColor = '#042743';
-      showAlert("Dark mode has been enabled", "success");
     }
-    else{
+    else if(mode === 'dark'){
       setMode('light');
       document.body.style.backgroundColor = 'white';
-      showAlert("Light mode has been enabled", "success");
     }
   }
   return (
@@ -45,7 +56,7 @@ function App() {// function based component earlier class based was used
       {/* <Navbar title="TextUtils" aboutText="About TextUtile"/>  */}
       {/* default values will be set for propos */}
       {/* <Navbar />  */}
-      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/> 
+      <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} /> 
       <div className="container my-3 ">
         <Alert alert={alert}/>
         <TextForm showAlert={showAlert} mode={mode} heading="Enter the text to convert" />
