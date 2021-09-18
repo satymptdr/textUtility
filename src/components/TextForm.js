@@ -8,7 +8,7 @@ export default function TextForm(props) {
 
     const handleOnChange = (event)=>{ // to change text 
         // console.log("OnChange");
-        setText(event.target.value); // using this user can change text value so, state of text is also updating
+        setText(event.target.value); // setText is updating text used in hook above, using this user can change text value so, state of text is also updating
     }
 
     const handleUpClick = ()=>{
@@ -31,12 +31,12 @@ export default function TextForm(props) {
     }
     const handleCopy = ()=>{
         // install library    npm install save copy-to-clipboard  
-        props.showAlert("Text is copied!!!!", "success");
         copy(text);
+        props.showAlert("Text is copied!!!!", "success");
     }
 
     const handleExtraSpaces = () =>{
-        let newText = text.split(/[ ]+/);
+        let newText = text.split(/[ ]+/); // split(separator, limit) method splits a string into an array of substrings, and returns the new array.
         setText(newText.join(" "));
         props.showAlert("Extra spaces removed!!!!", "success");
     }

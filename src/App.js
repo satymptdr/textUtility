@@ -7,6 +7,7 @@ import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 
 function App() {// function based component earlier class based was used
+  // creating hooks and setting default value, afterward it's value can be changed
   const [mode, setMode] = useState('light'); // whether dark mode is enabled or not
   const [alert, setAlert] = useState(null);
   const showAlert = (message, type) =>{
@@ -47,7 +48,7 @@ function App() {// function based component earlier class based was used
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/> 
       <div className="container my-3 ">
         <Alert alert={alert}/>
-        <TextForm showAlert={showAlert} heading="Enter the text to convert" mode={mode}/>
+        <TextForm showAlert={showAlert} mode={mode} heading="Enter the text to convert" />
         {/* <About/> */}
       </div>
     </>
